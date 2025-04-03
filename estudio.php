@@ -96,7 +96,7 @@
 								while ($elec = mysqli_fetch_array($matglobales)) {
 									echo "<tr><td bgcolor='#BDC3CD'>";
 									echo $elec["a2017"];
-									echo "</td><td bgcolor='#BDC3CD'><input name='globales[]' value='{$elec["id"]}' type='checkbox'></td></tr>";
+									echo "</td><td bgcolor='#BDC3CD'><input name='oblig[]' value='{$elec["id"]}' type='checkbox'></td></tr>";
 								}
 								?>
 							</tr>

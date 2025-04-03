@@ -54,7 +54,7 @@ if ($_POST['tipof'] == "antiguo") {
 if ($_POST['tipof'] == "antiguo") {
 	echo '<P ALIGN="CENTER" class="Estilotp" ><B><BR> ASIGNATURAS APROBADAS EN EL PLAN ANTERIOR</B></P>';
 } else {
-	echo '<P ALIGN="CENTER" class="Estilotp" ><B><BR> ASIGNATURAS APROBADAS AL MOMENTO</B></P>';
+	echo '<P ALIGN="CENTER" class="Estilotp" ><B><BR> ASIGNATURAS OBLIGATORIAS APROBADAS AL MOMENTO</B></P>';
 }
 echo '<center>';
 echo "<table border = '0' width=80% >";
@@ -235,18 +235,29 @@ if ($credobligaprobados == 0 and $credelectprpedgaprobados == 0) {
 	echo '<b>Ud. ser&aacute; Bienvenido al Programa de Licenciatura en Inform&aacute;tica </b>';
 } else {
 	//Tablas de datos a presentar como resumen
+	$credelectpendientes = (34 - $credelectaprobados);
+	if($credelectaprobados>34) $credelectpendientes = 0;
+	$credpracpedaprob = $credoprpedgaprobados + $credelectprpedgaprobados;
+	if($credpracpedaprob >= 50){
+		$credpracpedaprob = 50;
+	}
+
+	
+	if($credelectprpedgaprobados>=5){
+		$credelectprpedgaprobados = 5;
+	}
 
 	echo '<table>
 					<tr><td class="Estilot" align="center">Tipo de Créditos</td><td class="Estilot" align="center">Num. Aprobados</td><td class="Estilot" align="center">Num. Pendientes</td></tr>
 					<tr><td class="Estilot">Obligatorios</td><td class="Estilolp" align="center">', $credobligaprobados, '</td><td class="Estilolp" align="center">', $credobligpendientes, '</td></tr>
-					<tr><td class="Estilot">Electivos</td><td class="Estilolp" align="center">', $credelectaprobados, '</td><td class="Estilolp" align="center">', (34 - $credelectaprobados), '</td></tr>
-					<tr><td class="Estilot">TOTAL</td><td class="Estilot" align="center">', $credobligaprobados + $credelectaprobados, '</td><td class="Estilot" align="center">', $credobligpendientes + (34 - $credelectaprobados), '</td></tr>
+					<tr><td class="Estilot">Electivos</td><td class="Estilolp" align="center">', $credelectaprobados, '</td><td class="Estilolp" align="center">', ($credelectpendientes), '</td></tr>
+					<tr><td class="Estilot">TOTAL</td><td class="Estilot" align="center">', $credobligaprobados + $credelectaprobados, '</td><td class="Estilot" align="center">', $credobligpendientes + ($credelectpendientes), '</td></tr>
 			</table>';
 
 	echo '<p class="Estilolp">Todo profesional de Licenciatura en Inform&aacute;tica debe aprobar 50 cr&eacute;ditos de pr&aacute;ctica pedag&oacute;gica, incluidos en el total de cr&eacute;ditos del Programa (PEP 2017).</p> <p class="estilotp">CR&Eacute;DITOS DE PR&Aacute;CTICA PEDAG&Oacute;GICA </p>';
 	echo '<table>
 					<tr><td class="Estilot" align="center">Aprobados </td><td class="Estilot" align="center">Pendientes</td></tr>
-					<tr><td class="Estilot" align="center">', ($credoprpedgaprobados + $credelectprpedgaprobados), '</td><td class="Estilot" align="center">', ($numerocreditopracpedag - (($credoprpedgaprobados + $credelectprpedgaprobados))), ' (', (45 - $credoprpedgaprobados), ' en obligatorios y ', (5 - $credelectprpedgaprobados), ' en electivos)</td></tr>
+					<tr><td class="Estilot" align="center">', ($credoprpedgaprobados + $credelectprpedgaprobados), '</td><td class="Estilot" align="center">', (($numerocreditopracpedag - (($credoprpedgaprobados + $credelectprpedgaprobados))) > 0) ? (($numerocreditopracpedag - (($credoprpedgaprobados + $credelectprpedgaprobados)))) : "0" , ' (', (45 - $credoprpedgaprobados), ' en obligatorios y ', ((5 - $credelectprpedgaprobados) > 0) ? (5 - $credelectprpedgaprobados) : "0", ' en electivos)</td></tr>
 			</table>';
 
 	//C�digo de ubicaci�n en semestre
