@@ -1,0 +1,67 @@
+<?php
+if(!isset($_SESSION["session_username"])) {
+		header("location:login.php");
+} else {
+	if (isset($_POST['n_estudiante']) and isset($_POST['c_estudiante']) and isset($_POST['box'])){
+	$bdn_estudiante=$_POST['n_estudiante'];
+	$bdcodigo=$_POST['c_estudiante'];
+	$norepetir = mysqli_query ($con, "SELECT preinscribe FROM estudiantes WHERE codigo = '$bdcodigo'");  
+	$vista = mysqli_fetch_array($norepetir);
+	if($vista['preinscribe']==0) { 
+				$checked=$_POST['box'];
+				$h=0;
+				$total=0;
+				$fecha=date("Y-m-d h:i:s");
+				$actualizar=mysqli_query($con, "UPDATE estudiantes SET preinscribe='1' WHERE codigo='$bdcodigo'");
+				echo '<center><h3> Nombre de estudiante:<b> '.$bdn_estudiante.'</b> </h3>';
+				echo 'Ha decidido preinscribir, para el pr&oacute;ximo periodo acad&eacute;mico, lo siguiente </p>';
+				echo '<table border=0>';
+				echo '<tr> <th class="Estilot">Asignatura</th><th class="Estilot">Cr&eacute;ditos</th><th class="Estilot">Cred. Pr&aacute;c. Ped.</th><th class="Estilot">Condici&oacute;n</th></tr>';
+				foreach($checked as $v){
+					$materiasob=mysqli_query($con, "SELECT ida2017, a2017, cr2017, crpp, ca2017, prerrequisito FROM  materias  WHERE ida2017='$v' ORDER BY ca2017 DESC, a2017");
+					$materiasel=mysqli_query($con, "SELECT ide, asignatura, creditos, creditospp  FROM electivas WHERE electivas.ide='$v' and electivas.ide NOT IN (SELECT ida2017 FROM materias);");
+					if(mysqli_num_rows($materiasob)>0){
+						$row = mysqli_fetch_array($materiasob);
+						echo '<tr>';
+						$bdasignatura=$row['a2017'];
+						$bdcreditos=$row['cr2017'];
+						$bdcreditospp=$row['crpp'];
+						$bdcondicion=$row['ca2017'];
+						echo '<td class="Estilol">'.$bdasignatura.'</td>';
+						echo '<td class="Estilol">'.$bdcreditos.'</td>';
+						echo '<td class="Estilol">'.$bdcreditospp.'</td>';
+						echo '<td class="Estilol">'.$bdcondicion.'</td>';
+						echo '</tr>';	
+						$result = mysqli_query($con,"INSERT INTO m_inscritas (codigo, estudiante, asignatura, creditos, creditospp, condicion, fecha)
+							VALUES ('$bdcodigo','$bdn_estudiante','$bdasignatura','$bdcreditos','$bdcreditospp','$bdcondicion','$fecha')");
+					}
+					if(mysqli_num_rows($materiasel)>0){
+						$row = mysqli_fetch_array($materiasel);
+						echo '<tr>';
+						$bdasignatura=$row['asignatura'];
+						$bdcreditos=$row['creditos'];
+						$bdcreditospp=$row['creditospp'];
+						$bdcondicion="ELECTIVA";
+						echo '<td class="Estilol">'.$bdasignatura.'</td>';
+						echo '<td class="Estilol">'.$bdcreditos.'</td>';
+						echo '<td class="Estilol">'.$bdcreditospp.'</td>';
+						echo '<td class="Estilol">'.$bdcondicion.'</td>';
+						echo '</tr>';	
+						$result = mysqli_query($con,"INSERT INTO m_inscritas (codigo, estudiante, asignatura, creditos, creditospp, condicion, fecha)
+							VALUES ('$bdcodigo','$bdn_estudiante','$bdasignatura','$bdcreditos','$bdcreditospp','$bdcondicion','$fecha')");
+					}
+					/*echo '<br>';*/
+					$total=$bdcreditos+$total;	
+				}
+				echo '<tr><td colspan=4 class="Estilot"> En total suman: '.$total.' cr&eacute;ditos inscritos.</td>';	
+				echo '</table>';	
+				echo'<br> <br><a href="logout.php"><Button class="boton">Ingresar otro usuario</button></a>';
+				echo '</center>';
+    }else{
+		session_destroy(); // destruyo la sesión 			
+		include ('logout.php');
+	}
+	}else{include('logout.php');}
+}
+	
+	?>

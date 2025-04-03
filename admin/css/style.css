@@ -1,0 +1,306 @@
+/*
+Tutorial Name: How to Create a Registration and Login System Using PHP and mySQL
+Author: Samuel Dalusung
+*/
+
+/*= GENERAL STYLES
+--------------------------------------------------------*/
+body {
+    background: #efefef;
+    font-family: 'Open Sans', sans-serif;
+    color: #777;
+	scrollbar-face-color: #EEF3D1; 
+	scrollbar-shadow-color: #C9AD8F; 
+	scrollbar-highlight-color: #ffffff; 
+	scrollbar-3dlight-color: white; 
+	scrollbar-darkshadow-color: black; 
+	scrollbar-track-color: #EEF3Dd; 
+	scrollbar-arrow-color: white; 
+}
+
+table tr:nth-child(even) {
+    background-color: #eee;
+}
+ 
+table tr:nth-child(odd) {
+    background-color: #fff;
+}
+.Estilot{
+	font-family: Verdana, Arial, Helvetica, sans-serif, Calibri;
+	font-size: 13px;
+	color: #332B66;
+	font-weight: bold;
+}
+.Estilol{
+	font-family: Verdana, Arial, Helvetica, sans-serif, Calibri;
+	font-size: 11px;
+	color: #002b99;
+	
+}
+.Estilotp{
+	font-family: Verdana, Arial, Helvetica, sans-serif, Calibri;
+	font-size: 14px;
+	color: #332B66;
+	font-weight: bold;
+}
+.Estilolp{
+	font-family: Verdana, Arial, Helvetica, sans-serif, Calibri;
+	font-size: 13px;
+	color: #332B66;
+	
+}
+.Estilolpie{
+	font-family: Verdana, Arial, Helvetica, sans-serif, Calibri;
+	font-size:10px;
+	color: #332B66;
+	
+}
+
+a {
+    color: #f58220;
+    font-weight: 400;
+}
+
+a:link {
+	color: #f58220;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #f58220;
+}
+a:hover {
+	text-decoration: underline;
+	color: #f58220;
+}
+a:active {
+	text-decoration: none;
+	color: #f58220;
+}
+
+span {
+    color: #000000;
+	font-weight: bold;
+}
+
+.mlogin {
+    margin: 10px auto 0;
+
+	position:static;
+	
+	right:  100; width: 1000; top: 100; height: 30;
+}
+
+.mregister {
+    margin: 80px auto 0;
+}
+
+.error {
+    margin: 10px auto 0;
+    border: 1px solid #777;
+    padding: 3px;
+    color: #fff;
+    text-align: center;
+    width: 650px;
+    background: #f58220;
+}
+
+.regtext {
+    font-size: 13px;
+    margin-top: 26px;
+    color: #777;
+}
+
+/*= CONTAINERS
+--------------------------------------------------------*/
+.container {
+    padding: 25px 16px 25px 10px;
+    font-weight: 400;
+    overflow: hidden;
+    width: 350px;
+    height: auto;
+    background: #fff;
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.13);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,.13);
+    box-shadow: 0 1px 3px rgba(0,0,0,.13);
+}
+
+#welcome {
+    
+    padding: 10px;
+    background: #fff;
+    margin: 10px auto;
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.13);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,.13);
+    box-shadow: 0 1px 3px rgba(0,0,0,.13);
+	 width: 1000; 
+}
+.encabezado{
+	Position: static;
+	right:  175; width: 1000; top: 10; height: 20;	
+	
+}
+
+.container h1 {
+    color: #777;
+    text-align: center;
+    font-weight: 300;
+    border: 1px dashed #777;
+    margin-top: 13px;
+}
+
+.container label {
+    color: #777;
+    font-size: 14px;
+}
+
+#login {
+    width: 320px;
+    margin: auto;
+    padding-bottom: 15px;
+}
+select {
+     background: #eee;
+     border: none;
+	 border-width:2px;
+	 border-color:#a9d0f5;
+	 border-radius: 5px;
+	 color:#f58220;
+     font-size: 14px;
+     padding: 1px;
+	 margin: 2px;
+	 cursor: pointer;
+	 Position: relative;
+		right:  250; width: 170; top: 7; height: auto;*/
+  }
+
+.container form .input,.container input[type=text],.container input[type=password],.container input[type=e]{
+    background: #fbfbfb;
+    font-size: 24px;
+    line-height: 1;
+    width: 100%;
+    padding: 3px;
+    margin: 0 6px 5px 0;
+    outline: none;
+    border: 1px solid #d9d9d9;
+}
+
+.container form .input:focus {
+    border: 1px solid #f58220;
+    -webkit-box-shadow: 0 0 3px 0 rgba(245,130,32,0.75);
+    -moz-box-shadow: 0 0 3px 0 rgba(245,130,32,0.75);
+    box-shadow: 0 0 3px 0 rgba(245,130,32,0.75);
+}
+
+/*= FOOTER
+--------------------------------------------------------*/
+footer {
+    color: #777;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 20px;
+	Position: static;
+	right:  50%; width: 100%; top: 80%; height: 20%;
+}
+
+/*= BOTONES
+--------------------------------------------------------*/
+.boton {
+  border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+	color: #fff;
+padding: 7px 12px;
+cursor: pointer;
+-webkit-border-radius:4px;
+   -moz-border-radius:4px;
+        border-radius:4px;
+ }
+.boton:hover {
+ background: #f47c20;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+ }
+ .botoned {
+ border: none;
+ background: #f78d1d;
+ color: #ffffff;
+ padding: 3px;
+ font-size: 10px;
+ border-radius: 3px;
+ position: relative;
+ box-sizing: border-box;
+ transition: all 100ms ease;
+}
+.botoned:hover {
+ background: #f47c20;
+ color: #ffffff;
+ background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+ }
+ 
+
+.button{
+border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+	color: #fff;
+padding: 7px 12px;
+-webkit-border-radius:4px;
+   -moz-border-radius:4px;
+        border-radius:4px;
+float: right;
+cursor: pointer;
+}
+
+
+.button:hover{
+background: #f47c20;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+}
+
+/*MENU BAR*/
+.mimenu{
+    width: 800px;
+    height: 10%;
+    position: static;
+	right:  10%; width: 20%; top: 22%; height: 50%;
+    padding-bottom: 5px;
+    background-color: #ff0000;
+}
+
+.pageName{
+    padding: 10px 10px 10px 10px;
+    color: #fff;
+    font-size: 17.5px;
+}
+
+.escudoUdenarMenu{
+    padding: 7px 0px 5px 30px;
+    color: #fff;
+    font-size: 18px;
+    height: 50px;
+    width: 62px;
+}
+
+.optionsMenu{
+    font-size: 14px;
+    padding: 10px 10px 0px 0px;
+}
+
+.optionMenu{
+    padding: 10px 10px 10px 10px;
+}
+
+.optionMenu:hover{
+    background-color: #eee;
+}
+/*END MENU BAR*/

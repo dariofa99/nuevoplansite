@@ -1,0 +1,115 @@
+body {
+	background-color: #BDC3CD;
+	scrollbar-face-color: #EEF3D1; 
+	scrollbar-shadow-color: #C9AD8F; 
+	scrollbar-highlight-color: #ffffff; 
+	scrollbar-3dlight-color: white; 
+	scrollbar-darkshadow-color: black; 
+	scrollbar-track-color: #EEF3Dd; 
+	scrollbar-arrow-color: white; 
+}
+button {
+ border: none;
+ background: #93b9c2;
+ color: #ffffff;
+ padding: 10px;
+ font-size: 15px;
+ border-radius: 3px;
+ position: relative;
+ box-sizing: border-box;
+ transition: all 100ms ease;
+}
+button:hover {
+ background: rgba(0,0,0,0);
+ color: #ffffff;
+ box-shadow: inset 0 0 0 3px #102c4e;
+}
+.boton {
+ border: none;
+ background: #93b9c2;
+ color: #ffffff;
+ padding: 5px;
+ font-size: 15px;
+ border-radius: 3px;
+ position: relative;
+ box-sizing: border-box;
+ transition: all 100ms ease;
+}
+.boton:hover {
+ background: rgba(255,255,255,255);
+ color: #5555ff;
+ box-shadow: inset 0 0 0 1px #102c4e;
+ }
+ .botoned {
+ border: none;
+ background: #93b9c2;
+ color: #ffffff;
+ padding: 3px;
+ font-size: 10px;
+ border-radius: 3px;
+ position: relative;
+ box-sizing: border-box;
+ transition: all 100ms ease;
+}
+.botoned:hover {
+ background: rgba(255,255,255,255);
+ color: #5555ff;
+ box-shadow: inset 0 0 0 1px #102c4e;
+ }
+
+table tr:nth-child(even) {
+    background-color: #eee;
+}
+ 
+table tr:nth-child(odd) {
+    background-color: #fff;
+}
+.Estilot{
+	font-family: Verdana, Arial, Helvetica, sans-serif, Calibri;
+	font-size: 13px;
+	color: #332B66;
+	font-weight: bold;
+}
+.Estilol{
+	font-family: Verdana, Arial, Helvetica, sans-serif, Calibri;
+	font-size: 11px;
+	color: #002b99;
+	
+}
+.Estilotp{
+	font-family: Verdana, Arial, Helvetica, sans-serif, Calibri;
+	font-size: 14px;
+	color: #332B66;
+	font-weight: bold;
+}
+.Estilolp{
+	font-family: Verdana, Arial, Helvetica, sans-serif, Calibri;
+	font-size: 13px;
+	color: #332B66;
+	
+}
+.Estilolpie{
+	font-family: Verdana, Arial, Helvetica, sans-serif, Calibri;
+	font-size:10px;
+	color: #332B66;
+	
+}
+a:link {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+a:hover {
+	text-decoration: underline;
+	color: #FFFFFF;
+}
+a:active {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+
+

@@ -1,0 +1,22 @@
+<html>
+<head>
+<title> Ejemplo Menu</title>
+<script >
+function irA(menu){
+  window.location.href = menu.options[menu.selectedIndex].value;
+}
+</script>
+</head>
+<body>
+<FORM name="formulario">
+  <SELECT NAME="menu" SIZE=1 onChange ="irA(this);">
+    <OPTION VALUE="administer.php?option=23">BackUp Inscritos
+	<OPTION VALUE="administer.php?option=24">BackUp Estudiantes
+	<OPTION VALUE="administer.php?option=25">BackUp Materias
+	<OPTION VALUE="administer.php?option=26">BackUp Electivas
+    <OPTION VALUE="administer.php?option=27">Purgar BD
+    <OPTION VALUE="logout.php">Cerrar sesi&oacute;n
+   </SELECT>
+</FORM>
+</body>
+</html>
